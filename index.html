@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annalisa Porcelli – Mechatronics Engineer & Storyteller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">Annalisa Porcelli</div>
+        <nav>
+            <a href="#build">Engineering</a>
+            <a href="#web">Web</a>
+            <a href="#tell">Media</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="subtitle">Mechatronics engineer · Torino</span>
+        <h1>I build XR systems, robots and websites. Then I film them, so people understand what they do.</h1>
+        <div class="tags">
+            <span>XR / Unity</span>
+            <span>Computer vision</span>
+            <span>Robotics</span>
+            <span>Python</span>
+            <span>Web</span>
+            <span>Video</span>
+        </div>
+        <div class="hero-buttons">
+            <a href="#build" class="btn primary">Engineering work</a>
+            <a href="#tell" class="btn secondary">Media work</a>
+        </div>
+    </section>
+
+    <!-- Now Building / Feature Project -->
+    <section class="now-building">
+        <div class="badge">NOW BUILDING · Master's thesis 2026</div>
+        <div class="grid-2">
+            <div class="media-placeholder">[GIF: Ghost hand biofeedback]</div>
+            <div class="details">
+                <h2>ReFlex VR</h2>
+                <p>Upper-limb rehabilitation after stroke in VR. A "ghost hand" shows the healthy movement; the system
+                    compares it with the patient's hand in real time.</p>
+                <ul class="tech-specs">
+                    <li><strong>HARDWARE:</strong> Meta Quest 3, hand tracking</li>
+                    <li><strong>TRACKING:</strong> 26 hand joints, 50 Hz</li>
+                    <li><strong>STACK:</strong> Unity 6 · OpenXR · C# · Python</li>
+                    <li><strong>OUTPUT:</strong> Live HUD + clinical report for therapists</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Projects -->
+    <section id="build" class="projects">
+        <h2>Engineering — Selected Projects</h2>
+
+        <!-- Case Study 1 -->
+        <article class="card">
+            <div class="card-media">[Video Demo 1:00]</div>
+            <div class="card-body">
+                <span class="tags-mini">XR · Rehabilitation · Real-time data</span>
+                <h3>ReFlex VR · ghost hand biofeedback</h3>
+                <p><strong>Problem:</strong> After a stroke, patients repeat exercises without knowing whether the
+                    movement is right.</p>
+                <div class="pipeline">Quest 3 → Unity recorder → UDP stream → Python analysis → Therapist report</div>
+                <p><strong>My part:</strong> Biofeedback, ghost-hand demo, motion comparison, dashboard.</p>
+            </div>
+        </article>
+
+        <!-- Case Study 2 -->
+        <article class="card">
+            <div class="card-media">[GIF 0:40]</div>
+            <div class="card-body">
+                <span class="tags-mini">AR · Deep learning · Springer 2025</span>
+                <h3>AR Therapy for Phantom Limb Pain</h3>
+                <p>Gesture recognition drives a virtual prosthesis in augmented reality, in real time.</p>
+                <div class="pipeline">Camera → Gesture model → AR prosthesis</div>
+                <div class="links">
+                    <a href="#">Read the paper</a>
+                    <a href="#">Watch the demo</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <h2>Let's Connect</h2>
+        <p><a href="mailto:annalisaporcelli08@gmail.com">annalisaporcelli08@gmail.com</a></p>
+        <div class="socials">
+            <a href="https://www.linkedin.com/in/annalisa-porcelli-78147620b" target="_blank">LinkedIn</a> ·
+            <a href="#">GitHub</a> ·
+            <a href="#">CV (PDF)</a>
+        </div>
+        <p class="copy">Annalisa Porcelli · 2026</p>
+    </footer>
+
+</body>
+
+</html>
