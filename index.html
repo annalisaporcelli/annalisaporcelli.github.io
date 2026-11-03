@@ -1,108 +1,369 @@
-<!DOCTYPE html>
-<html lang="it">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!-- [AI] 2026-10-10: bozza v2 del portfolio di Annalisa. L'ingegneria viene prima (progetti in evidenza + web), i media dopo. Le anteprime sono segnaposto. -->
+<title>Annalisa Porcelli Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: two tracks like an edit timeline. BUILD (engineering, first) and TELL (media, second), joined by a "where they meet" strip. Brand stays dark + pink→violet + cyan outlines. */
+:root{
+  color-scheme: dark;
+  --bg:#0B0A10; --surface:#15131D; --surface-2:#1D1A28; --line:#2C2838;
+  --fg:#F3EFF8; --muted:#A49EB2;
+  --pink:#FF4F8B; --violet:#9B5CFF; --cyan:#45D6E6;
+  --note-bg:#FFF3B8; --note-fg:#2B2410;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  --grad:linear-gradient(90deg,var(--pink),var(--violet));
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.stack{display:grid;gap:14px}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annalisa Porcelli – Mechatronics Engineer & Storyteller</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+.draft{background:var(--note-bg);color:var(--note-fg);font-size:14px}
+.draft .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding-block:10px}
+.draft button{font:600 13px var(--f-body);background:var(--note-fg);color:var(--note-bg);border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+.note{background:var(--note-bg);color:var(--note-fg);font-size:13.5px;line-height:1.45;border-radius:6px;padding:10px 12px;max-width:62ch;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.note b{font-weight:600}
+.note::before{content:"NOTA";display:block;font:500 10px var(--f-mono);letter-spacing:.14em;opacity:.7;margin-bottom:2px}
+body.hide-notes .note{display:none}
 
-<body>
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px;flex-wrap:wrap}
+.logo{font:700 17px var(--f-display);text-decoration:none}
+.navlinks{display:flex;gap:6px;flex-wrap:wrap}
+.navlinks a{text-decoration:none;font-size:14px;padding:6px 14px;border:1.5px solid var(--cyan);border-radius:999px}
+.navlinks a:hover{background:color-mix(in srgb,var(--cyan) 15%,transparent)}
 
-    <!-- Header / Navbar -->
-    <header class="navbar">
-        <div class="logo">Annalisa Porcelli</div>
-        <nav>
-            <a href="#build">Engineering</a>
-            <a href="#web">Web</a>
-            <a href="#tell">Media</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+/* hero */
+.hero{padding-block:48px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px;align-items:start}
+.hero h1{font-size:clamp(44px,7.5vw,88px);line-height:.95;font-weight:800;letter-spacing:-.02em}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lede{font-size:clamp(19px,2.2vw,23px);max-width:36ch;margin:0}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:15px;padding:11px 20px;border-radius:999px}
+.btn.primary{background:var(--grad);color:#fff}
+.btn.ghost{border:1.5px solid var(--cyan)}
+.skills{display:flex;flex-wrap:wrap;gap:6px}
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <span class="subtitle">Mechatronics engineer · Torino</span>
-        <h1>I build XR systems, robots and websites. Then I film them, so people understand what they do.</h1>
-        <div class="tags">
-            <span>XR / Unity</span>
-            <span>Computer vision</span>
-            <span>Robotics</span>
-            <span>Python</span>
-            <span>Web</span>
-            <span>Video</span>
+/* "now building" spec panel */
+.now{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.now .head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.live{display:inline-flex;align-items:center;gap:6px;font:500 11px var(--f-mono);letter-spacing:.1em;color:#7CF0A8}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7CF0A8}
+.now .viz{aspect-ratio:16/9;max-width:100%;display:grid;place-items:center;text-align:center;padding:16px;background:radial-gradient(120% 90% at 50% 30%,#1E4F5A,#07060B 70%)}
+.now .body{padding:16px;display:grid;gap:12px}
+.now h3{font-size:24px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0;font-size:14px}
+.spec dt{font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em;padding-top:2px}
+.spec dd{margin:0;font-variant-numeric:tabular-nums}
+
+/* track header */
+.track{display:flex;align-items:center;gap:14px;margin-top:56px;margin-bottom:8px}
+.track .lbl{font:500 12px var(--f-mono);letter-spacing:.14em;padding:4px 10px;border-radius:4px}
+.track.build .lbl{background:#1E4F5A;color:#BFF4FA}
+.track.tell .lbl{background:#6B2547;color:#FFD0E0}
+.track hr{flex:1;border:0;border-top:1px solid var(--line);margin:0}
+
+section{padding-block:28px}
+.sechead{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between;margin-bottom:20px}
+.sechead h2{font-size:clamp(28px,4vw,44px);font-weight:700}
+
+/* engineering case cards */
+.cases{display:grid;gap:24px}
+.ecase{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.ecase>div{min-width:0}
+.ecase h3{font-size:clamp(24px,3vw,32px);line-height:1.1}
+.ecase p{margin:0}
+.ecase .problem{color:var(--muted);font-size:15px}
+.badge{display:inline-block;font:500 11px var(--f-mono);letter-spacing:.06em;padding:3px 8px;border-radius:4px;border:1px solid #E7A64A;color:#F1C27A}
+.pipeline{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font:500 12px var(--f-mono)}
+.pipeline span{background:var(--surface-2);border:1px solid var(--line);padding:4px 8px;border-radius:4px}
+.pipeline i{font-style:normal;color:var(--cyan)}
+.links{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
+
+.thumb{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:16px}
+.thumb .ph{font:500 11.5px var(--f-mono);color:rgba(255,255,255,.72);max-width:30ch}
+.thumb .dur{position:absolute;right:8px;bottom:8px;font:500 11px var(--f-mono);background:rgba(0,0,0,.6);padding:1px 6px;border-radius:3px}
+
+.chip{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:var(--surface-2);color:var(--muted)}
+.chip.space{color:#C6B2FF}.chip.eng{color:#7FE3EE}.chip.social{color:#FF9DBE}.chip.doc{color:#F1C27A}.chip.event{color:#BDB6CC}.chip.web{color:#9FF0B9}
+.cat{display:flex;gap:6px;flex-wrap:wrap}
+.ph-val{font-family:var(--f-mono);font-size:12.5px;background:var(--surface-2);border:1px dashed #5A5468;padding:0 5px;border-radius:3px}
+
+/* web: browser frames */
+.webgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:20px}
+.browser{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#3A3546}
+.browser .bar span{margin-left:8px;font:500 11px var(--f-mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.browser .view{aspect-ratio:16/10;max-width:100%;display:grid;place-items:center;text-align:center;padding:16px;background:radial-gradient(120% 90% at 50% 20%,#1F4A33,#0B0A10 72%)}
+.browser .info{padding:14px;display:grid;gap:6px}
+.browser h3{font-size:20px}
+.browser p{margin:0;font-size:14.5px}
+.status{font:500 11px var(--f-mono);letter-spacing:.08em}
+.status.on{color:#7CF0A8}.status.wip{color:#F1C27A}
+
+/* meet strip */
+.meet{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.meet div{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:4px;background:linear-gradient(135deg,color-mix(in srgb,#1E4F5A 40%,transparent),color-mix(in srgb,#6B2547 40%,transparent))}
+.meet b{font:700 17px var(--f-display)}
+.meet p{margin:0;font-size:14px;color:var(--muted)}
+
+/* showreel mock */
+.reel{display:grid;gap:10px}
+.screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#07060B}
+.screen .frame{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;transition:opacity .5s}
+.screen .frame b{font:700 clamp(20px,3.4vw,38px) var(--f-display);display:block}
+.screen .frame small{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.screen .tc{position:absolute;right:12px;bottom:10px;font:500 13px var(--f-mono);background:rgba(0,0,0,.55);padding:2px 8px;border-radius:4px}
+.screen .tag{position:absolute;left:12px;top:10px;font:500 11px var(--f-mono);letter-spacing:.1em;color:var(--cyan)}
+.timeline{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--line);position:relative}
+.timeline div{display:flex;align-items:center;padding-inline:8px;font:500 11px var(--f-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-right:1px solid var(--bg);opacity:.55;transition:opacity .3s}
+.timeline div.on{opacity:1}
+.playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--fg);left:0;transition:left .25s linear}
+.seg-space{background:#3B2A6E}.seg-tech{background:#1E4F5A}.seg-people{background:#6B2547}.seg-process{background:#5A4320}.seg-end{background:#2A2638}
+.bg-space{background:radial-gradient(120% 90% at 30% 20%,#3B2A6E,#07060B 70%)}
+.bg-tech{background:radial-gradient(120% 90% at 70% 30%,#1E4F5A,#07060B 70%)}
+.bg-people{background:radial-gradient(120% 90% at 40% 70%,#6B2547,#07060B 70%)}
+.bg-process{background:radial-gradient(120% 90% at 60% 60%,#5A4320,#07060B 70%)}
+.bg-end{background:#07060B}
+
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.filters button{font:500 13px var(--f-body);color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 16%,transparent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:18px}
+.card{display:grid;gap:8px;align-content:start;min-width:0}
+.card h3{font-size:19px;line-height:1.15}
+.card .role{font-size:14px;color:var(--muted);margin:0}
+.card.hidden{display:none}
+
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;margin-top:40px}
+.about p{max-width:60ch;margin:0 0 12px}
+.tools{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.contact{display:grid;gap:12px;align-content:start}
+.contact .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.contact .big{font:700 clamp(20px,3vw,28px) var(--f-display);word-break:break-word}
+.copy{font:500 13px var(--f-body);color:var(--fg);background:transparent;border:1px solid var(--cyan);border-radius:999px;padding:5px 12px;cursor:pointer}
+footer{padding-block:40px;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion: reduce){ .screen .frame,.playhead,.timeline div{transition:none} }
+</style>
+
+<div class="draft">
+  <div class="wrap">
+    <span><b>Bozza v2.</b> Ora l'ingegneria viene prima. Riquadri colorati = segnaposto, valori tratteggiati = da riempire.</span>
+    <button id="toggleNotes" type="button" aria-pressed="true">Nascondi note</button>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Annalisa Porcelli</a>
+    <div class="navlinks"><a href="#build">Engineering</a><a href="#web">Web</a><a href="#tell">Media</a><a href="#contact">Contact</a></div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div class="stack">
+      <span class="eyebrow">Mechatronics engineer · Torino</span>
+      <h1>Annalisa<br><span>Porcelli</span></h1>
+      <p class="lede">I build XR systems, robots and websites. Then I film them, so people understand what they do.</p>
+      <div class="skills">
+        <span class="chip eng">XR / Unity</span><span class="chip eng">Computer vision</span><span class="chip eng">Robotics</span><span class="chip eng">Python</span><span class="chip web">Web</span><span class="chip social">Video</span>
+      </div>
+      <div class="ctas">
+        <a class="btn primary" href="#build">Engineering work</a>
+        <a class="btn ghost" href="#tell">Media work</a>
+      </div>
+      <div class="note"><b>Prima parola: ingegnera.</b> La frase mette in ordine le cose: prima costruisci, poi racconti. Le competenze tecniche si vedono subito, prima del video.</div>
+    </div>
+
+    <aside class="now" aria-label="Current project">
+      <div class="head"><span class="live">NOW BUILDING</span><span class="mono">Master's thesis · 2026</span></div>
+      <div class="viz"><span class="ph mono" style="color:rgba(255,255,255,.72)">GIF: la ghost hand mostra il gesto, la mano del paziente la segue nel visore</span></div>
+      <div class="body">
+        <h3>ReFlex VR</h3>
+        <p style="margin:0;font-size:15px">Upper-limb rehabilitation after stroke in VR. A "ghost hand" shows the healthy movement; the system compares it with the patient's hand in real time.</p>
+        <dl class="spec">
+          <dt>HARDWARE</dt><dd>Meta Quest 3, hand tracking</dd>
+          <dt>TRACKING</dt><dd>26 hand joints, 50 Hz</dd>
+          <dt>STACK</dt><dd>Unity 6 · OpenXR · C# · Python</dd>
+          <dt>OUTPUT</dt><dd>Live HUD + clinical report for therapists</dd>
+        </dl>
+      </div>
+    </aside>
+  </header>
+  <div class="note">Il progetto di tesi è il tuo lavoro da ingegnera più forte e <b>più recente</b>, e oggi nel sito non c'è. Metterlo in Home come "Now building" fa vedere che sei attiva adesso. <b>Prima chiedi al relatore</b> cosa puoi mostrare pubblicamente.</div>
+
+  <!-- ================= BUILD ================= -->
+  <div class="track build" id="build"><span class="lbl">BUILD</span><hr></div>
+  <section>
+    <div class="sechead"><div class="stack" style="gap:6px"><span class="eyebrow">Engineering</span><h2>Selected projects</h2></div></div>
+    <div class="cases">
+
+      <article class="ecase">
+        <div class="thumb bg-tech" style="aspect-ratio:auto;min-height:220px"><span class="ph">video: confronto ghost/paziente, poi il report clinico</span><span class="dur">1:00</span></div>
+        <div class="stack">
+          <div class="cat"><span class="chip eng">XR</span><span class="chip eng">Rehabilitation</span><span class="chip eng">Real-time data</span></div>
+          <h3>ReFlex VR · ghost hand biofeedback</h3>
+          <p class="problem">Problem: after a stroke, patients repeat exercises without knowing whether the movement is right.</p>
+          <p>A healthy "ghost hand" demonstrates each step of a kitchen task. The patient's hand is recorded and compared stage by stage, and therapists get a printable report.</p>
+          <div class="pipeline"><span>Quest 3</span><i>→</i><span>Unity recorder</span><i>→</i><span>UDP stream</span><i>→</i><span>Python analysis</span><i>→</i><span>Therapist report</span></div>
+          <p class="mono">My part: biofeedback, ghost-hand demo, motion comparison, dashboard</p>
         </div>
-        <div class="hero-buttons">
-            <a href="#build" class="btn primary">Engineering work</a>
-            <a href="#tell" class="btn secondary">Media work</a>
+      </article>
+
+      <article class="ecase">
+        <div class="thumb bg-tech" style="aspect-ratio:auto;min-height:220px"><span class="ph">GIF: la protesi virtuale segue il moncone</span><span class="dur">0:40</span></div>
+        <div class="stack">
+          <div class="cat"><span class="chip eng">AR</span><span class="chip eng">Deep learning</span><span class="badge">Published · Springer 2025</span></div>
+          <h3>AR Therapy for Phantom Limb Pain</h3>
+          <p class="problem">Problem: mirror therapy only works for symmetric movements and needs a physical mirror.</p>
+          <p>Gesture recognition drives a virtual prosthesis in augmented reality, in real time.</p>
+          <div class="pipeline"><span>Camera</span><i>→</i><span>Gesture model</span><i>→</i><span>AR prosthesis</span></div>
+          <div class="links"><a href="#">Read the paper</a><a href="#">Watch the demo</a></div>
         </div>
-    </section>
+      </article>
 
-    <!-- Now Building / Feature Project -->
-    <section class="now-building">
-        <div class="badge">NOW BUILDING · Master's thesis 2026</div>
-        <div class="grid-2">
-            <div class="media-placeholder">[GIF: Ghost hand biofeedback]</div>
-            <div class="details">
-                <h2>ReFlex VR</h2>
-                <p>Upper-limb rehabilitation after stroke in VR. A "ghost hand" shows the healthy movement; the system
-                    compares it with the patient's hand in real time.</p>
-                <ul class="tech-specs">
-                    <li><strong>HARDWARE:</strong> Meta Quest 3, hand tracking</li>
-                    <li><strong>TRACKING:</strong> 26 hand joints, 50 Hz</li>
-                    <li><strong>STACK:</strong> Unity 6 · OpenXR · C# · Python</li>
-                    <li><strong>OUTPUT:</strong> Live HUD + clinical report for therapists</li>
-                </ul>
-            </div>
+      <article class="ecase">
+        <div class="thumb bg-tech" style="aspect-ratio:auto;min-height:220px"><span class="ph">GIF: la mano fa un gesto, il gatto robot risponde</span><span class="dur">0:30</span></div>
+        <div class="stack">
+          <div class="cat"><span class="chip eng">Robotics</span><span class="chip eng">Computer vision</span><span class="chip eng">Neural network</span></div>
+          <h3>SOX Robotic Cat</h3>
+          <p class="problem">Goal: a quadruped that reacts to people the way a pet would.</p>
+          <p>Design and control of a quadruped inspired by Pixar's Sox. Hand gestures are recognised by a camera and turned into movements.</p>
+          <div class="pipeline"><span>Camera</span><i>→</i><span>Hand gesture CNN</span><i>→</i><span>Gait controller</span><i>→</i><span>Servos</span></div>
+          <p class="mono"><span class="ph-val">[n. gradi di libertà, scheda, accuratezza del modello]</span></p>
         </div>
-    </section>
+      </article>
+    </div>
+    <div class="note" style="margin-top:18px">Ogni progetto è un <b>case study</b>: problema → soluzione → <b>pipeline tecnica</b> (la catena di blocchi) → il tuo ruolo. La pipeline fa vedere a colpo d'occhio che sai progettare un sistema intero, e un recruiter tecnico la legge in 3 secondi. Dove puoi, aggiungi un numero (Hz, accuratezza, gradi di libertà).</div>
+  </section>
 
-    <!-- Engineering Projects -->
-    <section id="build" class="projects">
-        <h2>Engineering — Selected Projects</h2>
+  <section id="web">
+    <div class="sechead"><div class="stack" style="gap:6px"><span class="eyebrow">Web</span><h2>Websites &amp; apps</h2></div></div>
+    <div class="webgrid">
+      <article class="browser">
+        <div class="bar"><i></i><i></i><i></i><span><span class="ph-val">[indirizzo del sito online]</span></span></div>
+        <div class="view"><span class="ph mono" style="color:rgba(255,255,255,.72)">screenshot della home del sito</span></div>
+        <div class="info"><span class="status on">● LIVE</span><h3><span class="ph-val">[nome del sito]</span></h3><p><span class="ph-val">[per chi, cosa fa, cosa hai fatto: design, sviluppo, contenuti]</span></p><div class="links"><a href="#">Visit site</a></div></div>
+      </article>
+      <article class="browser">
+        <div class="bar"><i></i><i></i><i></i><span><span class="ph-val">[nome progetto]</span></span></div>
+        <div class="view" style="background:radial-gradient(120% 90% at 50% 20%,#5A4320,#0B0A10 72%)"><span class="ph mono" style="color:rgba(255,255,255,.72)">screenshot o mockup in corso</span></div>
+        <div class="info"><span class="status wip">● IN PROGRESS</span><h3><span class="ph-val">[sito in lavorazione]</span></h3><p><span class="ph-val">[cosa sarà e per chi]</span></p></div>
+      </article>
+      <article class="browser">
+        <div class="bar"><i></i><i></i><i></i><span>classroom-app</span></div>
+        <div class="view" style="background:radial-gradient(120% 90% at 50% 20%,#1E4F5A,#0B0A10 72%)"><span class="ph mono" style="color:rgba(255,255,255,.72)">screenshot: dashboard docente</span></div>
+        <div class="info"><span class="status on">● FULL-STACK</span><h3>Classroom Assignments</h3><p>Login, dashboards and assignment review, with separate views for students and teachers.</p></div>
+      </article>
+    </div>
+    <div class="note" style="margin-top:18px">I siti hanno <b>una sezione tutta loro</b>, dentro una cornice del browser, con lo stato "Live" o "In progress". Mandami il link di quello online e due righe su quelli in corso (per chi sono, cosa fai tu) e li riempio.</div>
+  </section>
 
-        <!-- Case Study 1 -->
-        <article class="card">
-            <div class="card-media">[Video Demo 1:00]</div>
-            <div class="card-body">
-                <span class="tags-mini">XR · Rehabilitation · Real-time data</span>
-                <h3>ReFlex VR · ghost hand biofeedback</h3>
-                <p><strong>Problem:</strong> After a stroke, patients repeat exercises without knowing whether the
-                    movement is right.</p>
-                <div class="pipeline">Quest 3 → Unity recorder → UDP stream → Python analysis → Therapist report</div>
-                <p><strong>My part:</strong> Biofeedback, ghost-hand demo, motion comparison, dashboard.</p>
-            </div>
-        </article>
+  <section>
+    <div class="sechead"><div class="stack" style="gap:6px"><span class="eyebrow">Where they meet</span><h2>Engineering on camera</h2></div></div>
+    <div class="meet">
+      <div><b>ESA XR Conference</b><p>An XR conference told by someone who builds XR.</p></div>
+      <div><b>CubeSat PoliTo</b><p>Satellite engineering explained in 30-second reels.</p></div>
+      <div><b>ESA · EAC</b><p>Video and graphics for the astronaut Space Training Team.</p></div>
+      <div><b>Ker(PoliTO)</b><p>Research talks with professors, cut for four platforms.</p></div>
+    </div>
+    <div class="note" style="margin-top:14px">Questa striscia è il <b>ponte</b>: sono i lavori video in cui serve capire la tecnologia. Spiegano perché un'ingegnera fa video, invece di farla sembrare un hobby.</div>
+  </section>
 
-        <!-- Case Study 2 -->
-        <article class="card">
-            <div class="card-media">[GIF 0:40]</div>
-            <div class="card-body">
-                <span class="tags-mini">AR · Deep learning · Springer 2025</span>
-                <h3>AR Therapy for Phantom Limb Pain</h3>
-                <p>Gesture recognition drives a virtual prosthesis in augmented reality, in real time.</p>
-                <div class="pipeline">Camera → Gesture model → AR prosthesis</div>
-                <div class="links">
-                    <a href="#">Read the paper</a>
-                    <a href="#">Watch the demo</a>
-                </div>
-            </div>
-        </article>
-    </section>
+  <!-- ================= TELL ================= -->
+  <div class="track tell" id="tell"><span class="lbl">TELL</span><hr></div>
+  <section>
+    <div class="sechead"><div class="stack" style="gap:6px"><span class="eyebrow">Media</span><h2>Video, photo, graphics</h2></div></div>
+    <div class="reel" style="margin-bottom:28px">
+      <div class="screen" aria-label="Showreel preview">
+        <span class="tag">SHOWREEL 2026</span>
+        <div class="frame bg-space" id="frame"><div><b id="frameTitle">Space</b><small id="frameSub">EAC lunar module · ESA XR Conference</small></div></div>
+        <span class="tc" id="tc">00:00:00:00</span>
+      </div>
+      <div class="timeline" id="timeline" aria-hidden="true">
+        <div class="seg-space on" style="flex:20">SPACE</div><div class="seg-tech" style="flex:15">TECH</div><div class="seg-people" style="flex:20">PEOPLE</div><div class="seg-process" style="flex:20">PROCESS</div><div class="seg-end" style="flex:5">END</div>
+        <span class="playhead" id="playhead"></span>
+      </div>
+    </div>
 
-    <!-- Contact & Footer -->
-    <footer id="contact">
-        <h2>Let's Connect</h2>
-        <p><a href="mailto:annalisaporcelli08@gmail.com">annalisaporcelli08@gmail.com</a></p>
-        <div class="socials">
-            <a href="https://www.linkedin.com/in/annalisa-porcelli-78147620b" target="_blank">LinkedIn</a> ·
-            <a href="#">GitHub</a> ·
-            <a href="#">CV (PDF)</a>
-        </div>
-        <p class="copy">Annalisa Porcelli · 2026</p>
-    </footer>
+    <div class="sechead" style="margin-bottom:14px">
+      <span></span>
+      <div class="filters" role="group" aria-label="Filter media">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="space" aria-pressed="false">Space &amp; Science</button>
+        <button type="button" data-f="social" aria-pressed="false">Social</button>
+        <button type="button" data-f="doc" aria-pressed="false">Documentary</button>
+        <button type="button" data-f="event" aria-pressed="false">Events</button>
+      </div>
+    </div>
+    <div class="grid" id="grid">
+      <article class="card" data-c="space event"><div class="thumb bg-space"><span class="ph">palco ESA XR Conference</span><span class="dur">trailer</span></div><div class="cat"><span class="chip space">Space</span></div><h3>ESA XR Conference 2026</h3><p class="role">Video producer · trailer</p></article>
+      <article class="card" data-c="space"><div class="thumb bg-space"><span class="ph">modulo lunare EAC</span><span class="dur">case study</span></div><div class="cat"><span class="chip space">Space</span></div><h3>ESA · European Astronaut Centre</h3><p class="role">Video, photo, graphics</p></article>
+      <article class="card" data-c="space social"><div class="thumb bg-space"><span class="ph">CubeSat sul banco</span><span class="dur">reels</span></div><div class="cat"><span class="chip space">Space</span><span class="chip social">Social</span></div><h3>CubeSat PoliTo</h3><p class="role">Reels and graphics</p></article>
+      <article class="card" data-c="social"><div class="thumb bg-people"><span class="ph">due microfoni, ospite</span><span class="dur">podcast</span></div><div class="cat"><span class="chip social">Social</span></div><h3>Ker(PoliTO)</h3><p class="role">Reels, YouTube, Spotify</p></article>
+      <article class="card" data-c="social event"><div class="thumb bg-people"><span class="ph">corsa all'alba</span><span class="dur">reels</span></div><div class="cat"><span class="chip social">Social</span></div><h3>Running Club</h3><p class="role">Shooting and edit</p></article>
+      <article class="card" data-c="doc"><div class="thumb bg-process"><span class="ph">castagne · sugo · Palermo</span><span class="dur">3 ep.</span></div><div class="cat"><span class="chip doc">Series</span></div><h3>Process Stories</h3><p class="role">Short documentary series</p></article>
+      <article class="card" data-c="event"><div class="thumb bg-people"><span class="ph">lancio del tocco</span><span class="dur">event</span></div><div class="cat"><span class="chip event">Event</span></div><h3>Graduation films</h3><p class="role">Shooting and edit</p></article>
+    </div>
+    <div class="note" style="margin-top:18px">I media restano tutti, ma <b>in seconda posizione</b> e più compatti. La parte video completa (case study ESA, reel verticali) si apre da qui.</div>
+  </section>
 
-</body>
+  <section class="about" id="about">
+    <div>
+      <span class="eyebrow">About</span>
+      <h2 style="font-size:clamp(28px,4vw,44px);margin-block:6px 14px">Engineer by training, storyteller by habit</h2>
+      <p>I'm finishing a master's in mechatronic engineering at Politecnico di Torino, working on VR rehabilitation for stroke patients. I've built a robot cat, an AR therapy published on Springer, web apps and websites.</p>
+      <p>I also film and edit, for the European Astronaut Centre, a student satellite team and a university podcast. Knowing how the technology works makes the story clearer.</p>
+      <p class="tools">Unity · C# · Python · PyTorch · OpenCV · ROS · HTML/CSS/JS · Figma · Premiere Pro · After Effects · DaVinci Resolve</p>
+      <div class="note">Gli strumenti: <b>prima quelli tecnici</b>, poi quelli video. Controlla la lista: alcuni li ho messi io a intuito (PyTorch, OpenCV, ROS).</div>
+    </div>
+    <div class="contact" id="contact">
+      <span class="eyebrow">Contact</span>
+      <div class="row"><span class="big" id="email">annalisaporcelli08@gmail.com</span><button class="copy" id="copyEmail" type="button">Copy</button></div>
+      <div class="row"><a href="https://www.linkedin.com/in/annalisa-porcelli-78147620b" target="_blank" rel="noopener">LinkedIn</a><span class="mono">·</span><a href="#">GitHub</a><span class="mono">·</span><a href="#">CV (PDF)</a></div>
+      <div class="note">Per il lato ingegneria servono <b>GitHub e un CV in PDF</b>: chi recluta profili tecnici li cerca sempre.</div>
+    </div>
+  </section>
+</main>
 
-</html>
+<footer><div class="wrap">Annalisa Porcelli · 2026</div></footer>
+
+<script>
+// [AI] 2026-10-10: anteprima dello showreel che scorre le tappe, filtri dei media, note on/off, copia email.
+(function(){
+  var segs=[
+    {k:'space',t:'Space',s:'EAC lunar module · ESA XR Conference',from:0,to:20},
+    {k:'tech',t:'Tech',s:'SOX robot · AR prosthesis · CubeSat lab',from:20,to:35},
+    {k:'people',t:'People',s:'Ker(PoliTO) · running club · graduations',from:35,to:55},
+    {k:'process',t:'Process',s:'Palermo · chestnuts · sauce',from:55,to:75},
+    {k:'end',t:'Annalisa Porcelli',s:'Engineer · video maker',from:75,to:80}
+  ];
+  var total=80,t=0,frame=document.getElementById('frame'),ft=document.getElementById('frameTitle'),fs=document.getElementById('frameSub'),tc=document.getElementById('tc'),ph=document.getElementById('playhead'),bars=document.querySelectorAll('#timeline div');
+  function pad(n){return String(n).padStart(2,'0')}
+  function render(){var i=segs.findIndex(function(s){return t>=s.from&&t<s.to});if(i<0)i=0;var s=segs[i];frame.className='frame bg-'+s.k;ft.textContent=s.t;fs.textContent=s.s;bars.forEach(function(b,j){b.classList.toggle('on',j===i)});ph.style.left=(t/total*100)+'%';tc.textContent='00:'+pad(Math.floor(t/60))+':'+pad(t%60)+':00';}
+  render();
+  var still=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!still)setInterval(function(){t=(t+1)%total;render()},250);
+
+  var btns=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('#grid .card');
+  btns.forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.f;btns.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});cards.forEach(function(c){c.classList.toggle('hidden',f!=='all'&&c.dataset.c.split(' ').indexOf(f)<0)})})});
+
+  var tn=document.getElementById('toggleNotes');
+  tn.addEventListener('click',function(){var hide=document.body.classList.toggle('hide-notes');tn.textContent=hide?'Mostra note':'Nascondi note';tn.setAttribute('aria-pressed',String(!hide))});
+
+  var cp=document.getElementById('copyEmail');
+  cp.addEventListener('click',function(){var el=document.getElementById('email');function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}try{navigator.clipboard.writeText(el.textContent).then(function(){cp.textContent='Copied'},sel)}catch(e){sel()}});
+})();
+</script>
+
+</body></html>
